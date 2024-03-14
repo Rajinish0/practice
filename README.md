@@ -10,6 +10,8 @@ Checking more stuff than the previous one
 
 Checking continues..
 
+
+Updated the readme
 .
 .
 .
