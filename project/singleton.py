@@ -12,4 +12,4 @@ class Singleton:
 			cls._instance.__init__(*args, **kwargs)
 		return cls._instance
 	def __init__(self):
-		assert False, "_init needs to be implemented"
+		assert False, "__init__ needs to be implemented"
