@@ -3,12 +3,21 @@ from button import Button
 from constants import *
 import pygame
 
+'''
+MainWindow has 4 buttons for each of the corresponding screens and an exit button
+the callBack functions of the buttons just switches to that state while the Exit button calls pygame.quit() to exit the game
+
+TO DO:
+implement Map and Control menu screens
+'''
 class MainWindow(Screen):
 	def __init__(self):
 		self.MapMenu = Button(W/2, H/2 - 150, 50, 50, text="Maps", color=GREEN)
 		self.CntrlMenu = Button(W/2, H/2 - 50, 50, 50, text="Controls", color=GREEN)
-		self.LvlEditor = Button(W/2, H/2 + 50, 50, 50, text="Editor", color=GREEN, callBack= lambda: self.gameMgr.setState(LEVEL_EDITOR) )
-		self.ExitButton = Button(W/2, H/2 + 150, 50, 50, text="Exit", color=GREEN, callBack=lambda: pygame.quit())
+		self.LvlEditor = Button(W/2, H/2 + 50, 50, 50, text="Editor", color=GREEN,
+						  	 	callBack= lambda: self.gameMgr.setState(LEVEL_EDITOR) )
+		self.ExitButton = Button(W/2, H/2 + 150, 50, 50, text="Exit", color=GREEN,
+						   		 callBack=lambda: pygame.quit())
 	
 	def update(self):
 		self.MapMenu.update()

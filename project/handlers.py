@@ -1,22 +1,19 @@
 import pygame
 from functools import cache
 from utils import resetCursor
+from singleton import Singleton
 
+'''
+Singleton class (so that we can use it anywhere in the program)
+curState - current screen
+prevState - previous screen
 
-class Singleton:
-
-	_instance = None
-	
-	def __new__(cls):
-		if cls._instance is None:
-			cls._instance = super().__new__(cls)
-			cls._instance._init()
-		return cls._instance
-	def _init(self):
-		assert False, "_init needs to be implemented"
-
+setState - set the current state to some state
+setState has to call resetCursor() because when a button is pressed to change the state (change the screen)
+that button is no longer there to reset the cursor, so it must be done here.
+'''
 class GameStateMgr(Singleton):
-	def _init(self):
+	def __init__(self):
 		self.curState = None
 		self.prevState = None
 
@@ -32,7 +29,7 @@ class GameStateMgr(Singleton):
 		return self.prevState
 
 class EventMgr(Singleton):
-	def _init(self):
+	def __init__(self):
 		self.mousePressed = False
 	
 	def setMousePressed(self, t):
@@ -41,9 +38,13 @@ class EventMgr(Singleton):
 	def reset(self):
 		self.mousePressed = False
 
+
+'''
+a cached class for loading images, alternatively this could also be just a single cached function in utils.
+'''
 class ImageHandler(Singleton):
 	
-	def _init(self):
+	def __init__(self):
 		pass
 
 	@cache	

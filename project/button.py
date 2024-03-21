@@ -3,17 +3,47 @@ from handlers import *
 from utils import *
 import pygame
 
+'''
+default function for when the mouse is on top of a button,
+it sets the cursor to a hand
+'''
 def _defHover():
 	pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+
+'''
+BUTTONS MUST BE UPDATED BEFORE THEY ARE DRAWN.
+
+the update method checks for mouse presses
+'''
 
 class Button:
 	evMgr = EventMgr()
 	imgHandler = ImageHandler()
-	hovered = False
+	'''
+	args :
+	x - x coord
+	y - y coord
+	width - width
+	height - height
+	text - text to be drawn on top of the button
+	textColor - color for the text
+	img - image to be drawn on top the button
+	color - the color for the bounding box
+	callBack - a method that is called when the button is pressed
+	onHover - called when the mouse is on top of the button
+	center - if true then the x,y arguments define the center of the button otherwise they define the top left coordinates
+			 it is true by default.
+	drawRect - draw a bounding box around the button
 
+	button sets its pressed property to true if it was clicked/pressed,
+	and it sets its hovered property to true if the mouse is on top of it.
+
+	img and drawRect are mutually exclusive for now; i.e you can either draw an image or a bounding box,
+	but it can be edited if necessary.
+	'''
 	def __init__(self, x, y, width, height, text = None,
-			     img = None, color = RED, callBack=None,
-			 	 onHover=_defHover, center=True,
+			     textColor = WHITE, img = None, color = RED,
+				 callBack=None, onHover=_defHover, center=True,
 				 drawRect = False):
 		self.x = x
 		self.y = y
@@ -22,6 +52,7 @@ class Button:
 		self.img = img
 		self.color = color
 		self.text = text
+		self.textColor = textColor
 		self.cb = callBack
 		self.onHover = onHover
 		self.drawRect = drawRect
@@ -59,5 +90,7 @@ class Button:
 		elif self.drawRect:
 			pygame.draw.rect(display, self.color, (self.x, self.y, self.w, self.h))
 		if self.text is not None:
-			drawText(display, self.text, self.x + self.w/2, self.y+self.h/2, size = self.w//2)
+			drawText(display, self.text, self.x + self.w/2,
+					 self.y+self.h/2, size = self.w//2,
+					 color=self.textColor)
 

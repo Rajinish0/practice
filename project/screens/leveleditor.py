@@ -3,6 +3,10 @@ from constants import *
 from button import Button
 import pygame
 
+'''
+TEMPORARY CLASS FOR EXPERIMENTATION PURPOSES.
+'''
+
 class LevelEditor(Screen):
 	def __init__(self):
 		self.offSetX = 200
