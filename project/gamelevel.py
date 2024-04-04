@@ -38,6 +38,7 @@ class GameLevel:
 		self.gameobjs, self.players = init(mp, boxwidth, boxheight)
 		self.bw = boxwidth
 		self.bh = boxheight
+		GameObject.setLevel(self)
 
 	def update(self):
 		for i in range(NUM_BOXES):
