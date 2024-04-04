@@ -1,4 +1,5 @@
-from handlers import GameStateMgr
+from handlers import *
+
 '''
 generic screen class
 
@@ -8,6 +9,8 @@ and also has a static reference to the gamestatemgr so that they can change the 
 class Screen:
 	main = None
 	gameMgr = GameStateMgr()
+	imgHandler = ImageHandler()
+	evMgr = EventMgr()
 
 	'''main calls this function to connect the two classes'''
 	@staticmethod

@@ -31,12 +31,20 @@ class GameStateMgr(Singleton):
 class EventMgr(Singleton):
 	def __init__(self):
 		self.mousePressed = False
+		self.keys = dict()
 	
+	def keyPressed(self, key):
+		return self.keys.get(key, False)	
+
 	def setMousePressed(self, t):
-		self.mousePressed = True
+		self.mousePressed = t
+
+	def setKeyPressed(self, key, t):
+		self.keys[key] = t
 
 	def reset(self):
 		self.mousePressed = False
+#		self.keyPressed = False
 
 
 '''
@@ -46,8 +54,7 @@ class ImageHandler(Singleton):
 	
 	def __init__(self):
 		pass
-
-	@cache	
+	@cache
 	def load(self, img, dimensions):
 		w, h = dimensions
 		img = pygame.image.load(img)

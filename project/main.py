@@ -32,8 +32,12 @@ class Main:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				self.run = False
-			if event.type == pygame.MOUSEBUTTONDOWN:
+			elif event.type == pygame.MOUSEBUTTONDOWN:
 				self.eventMgr.setMousePressed(True)
+			elif event.type == pygame.KEYDOWN:
+				self.eventMgr.setKeyPressed(event.key, True)
+			elif event.type == pygame.KEYUP:
+				self.eventMgr.setKeyPressed(event.key, False)
 			self.states[self.gameMgr.getState()].handleEvent(event)
 	
 	'''
@@ -61,7 +65,7 @@ class Main:
 	'''
 	def init(self):
 		Screen.setMain(self)
-		self.states = {START_WINDOW : StartWindow(), MAIN_WINDOW: MainWindow(), LEVEL_EDITOR: LevelEditor() }
+		self.states = {START_WINDOW : StartWindow(), MAIN_WINDOW: MainWindow(), LEVEL_EDITOR: LevelEditor(), MAP_WINDOW : MapWindow() }
 		self.gameMgr.setState( START_WINDOW )
 
 	'''
@@ -71,10 +75,10 @@ class Main:
 	def mainLoop(self):
 		try:
 			while self.run:
+				self.pollEvents()
 				self.update()
 				self.draw()
 				pygame.display.flip()
-				self.pollEvents()
 		except pygame.error:
 			sys.exit()
 

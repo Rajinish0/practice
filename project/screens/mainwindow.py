@@ -12,7 +12,7 @@ implement Map and Control menu screens
 '''
 class MainWindow(Screen):
 	def __init__(self):
-		self.MapMenu = Button(W/2, H/2 - 150, 50, 50, text="Maps", color=GREEN)
+		self.MapMenu = Button(W/2, H/2 - 150, 50, 50, text="Maps", color=GREEN, callBack = lambda: self.gameMgr.setState(MAP_WINDOW))
 		self.CntrlMenu = Button(W/2, H/2 - 50, 50, 50, text="Controls", color=GREEN)
 		self.LvlEditor = Button(W/2, H/2 + 50, 50, 50, text="Editor", color=GREEN,
 						  	 	callBack= lambda: self.gameMgr.setState(LEVEL_EDITOR) )
