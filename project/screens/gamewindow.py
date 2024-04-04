@@ -27,4 +27,4 @@ class GameWindow(Screen):
 
 	@staticmethod
 	def screentoCoords(x, y):
-		return (y//GameWindow.boxHeight, x//boxWidth)
+		return (y//GameWindow.boxHeight, x//GameWindow.boxWidth)
